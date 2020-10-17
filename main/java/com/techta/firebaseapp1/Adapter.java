@@ -2,6 +2,7 @@ package com.techta.firebaseapp1;
 
 import android.content.Context;
 import android.content.SearchRecentSuggestionsProvider;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class Adapter {
 
         public void bind(UserModel userModel, String key) {
             name.setText(userModel.getName());
-            age.setText(userModel.getAge());
+            age.setText(String.valueOf(userModel.getAge()));
             zip.setText(String.valueOf(userModel.getZip_code()));
             address.setText(userModel.getAddress());
             this.key = key;
@@ -58,7 +59,9 @@ public class Adapter {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(parent);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_layout, parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
         }
 
         @Override
