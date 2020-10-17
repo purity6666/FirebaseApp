@@ -1,6 +1,7 @@
 package com.techta.firebaseapp1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SearchRecentSuggestionsProvider;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ public class Adapter {
         recyclerView.setAdapter(userAdapter);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name, age, zip, address;
         private String key;
@@ -37,6 +38,20 @@ public class Adapter {
             age = itemView.findViewById(R.id.ageTxt);
             zip = itemView.findViewById(R.id.zipTxt);
             address = itemView.findViewById(R.id.addressTxt);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(m_context, EditUserActivity.class);
+                    intent.putExtra("key", key);
+                    intent.putExtra("name", name.getText().toString());
+                    intent.putExtra("age", age.getText().toString());
+                    intent.putExtra("address", address.getText().toString());
+                    intent.putExtra("zip", zip.getText().toString());
+
+                    m_context.startActivity(intent);
+                }
+            });
         }
 
         public void bind(UserModel userModel, String key) {
