@@ -57,6 +57,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#FF9800"
-        android:text="Add User"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:text="Add User"/>
 </RelativeLayout>
