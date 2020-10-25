@@ -1,10 +1,12 @@
 package com.techta.firebaseapp1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FirebaseAuth auth;
+    private ProgressBar progressBar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,7 +80,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = findViewById(R.id.progressBar);
+
         auth = FirebaseAuth.getInstance();
+
+        progressBar.getProgressDrawable().setColorFilter(
+                Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN);
 
         getSupportActionBar().setTitle("");
 
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         new FirebaseDatabaseHelper().readUsers(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<UserModel> userModels, List<String> keys) {
-                findViewById(R.id.progressBar).setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 new Adapter().setConfig(recyclerView, MainActivity.this, userModels, keys);
             }
 

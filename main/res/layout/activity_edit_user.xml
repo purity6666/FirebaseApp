@@ -4,59 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="20dp"
     tools:context=".AddNewUser">
 
-    <EditText
-        android:id="@+id/nameET"
+    <RelativeLayout
+        android:id="@+id/editTexts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="User Name"
-        android:inputType="textPersonName" />
+        android:layout_centerInParent="true">
 
-    <EditText
-        android:id="@+id/addressET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nameET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Address"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/nameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/custom_et"
+            android:ems="10"
+            android:hint="User Name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#474747"
+            android:fontFamily="@font/sfprodisplay_light"/>
 
-    <EditText
-        android:id="@+id/ageET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addressET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Age"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/addressET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameET"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_et"
+            android:elevation="0dp"
+            android:ems="10"
+            android:hint="User Address"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="#474747"
+            android:fontFamily="@font/sfprodisplay_light"/>
 
-    <EditText
-        android:id="@+id/zipET"
+        <EditText
+            android:id="@+id/ageET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addressET"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_et"
+            android:ems="10"
+            android:hint="User Age"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColorHint="#474747"
+            android:fontFamily="@font/sfprodisplay_light"/>
+
+        <EditText
+            android:id="@+id/zipET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ageET"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_et"
+            android:ems="10"
+            android:hint="User Zip Code"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColorHint="#474747"
+            android:fontFamily="@font/sfprodisplay_light"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_above="@+id/editTexts"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/userAddTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ageET"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="User Zip Code"
-        android:inputType="number" />
+        android:fontFamily="@font/sfprodisplay_bold"
+        android:text="Editing a User?"
+        android:textColor="#000"
+        android:textSize="35sp" />
+
+
 
     <Button
+        android:layout_centerHorizontal="true"
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit User"
+        android:layout_below="@+id/editTexts"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_design"
+        android:fontFamily="@font/sfprodisplay_light"
+        android:text="         Edit         "
         android:textAllCaps="false"
-        android:background="#FF9800"
-        android:layout_below="@+id/zipET"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true" />
+        android:textColor="#FFF" />
 </RelativeLayout>
