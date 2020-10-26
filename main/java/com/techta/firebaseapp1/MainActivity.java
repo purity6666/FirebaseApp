@@ -1,5 +1,6 @@
 package com.techta.firebaseapp1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
+    private FloatingActionButton addBtn;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,11 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (user != null) {
             menu.getItem(0).setVisible(true);
-            menu.getItem(2).setVisible(false);
             menu.getItem(1).setVisible(true);
         } else {
             menu.getItem(0).setVisible(false);
-            menu.getItem(2).setVisible(true);
             menu.getItem(1).setVisible(false);
         }
         return super.onCreateOptionsMenu(menu);
@@ -46,23 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (user != null) {
             menu.getItem(0).setVisible(true);
-            menu.getItem(2).setVisible(false);
-            menu.getItem(1).setVisible(true);
+            menu.getItem(1).setVisible(false);
         } else {
             menu.getItem(0).setVisible(false);
-            menu.getItem(2).setVisible(true);
-            menu.getItem(1).setVisible(false);
+            menu.getItem(1).setVisible(true);
         }
         return super.onPrepareOptionsMenu(menu);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.addItem:
-                Intent intent = new Intent(this, AddNewUser.class);
-                startActivity(intent);
-                return true;
             case R.id.loginRegister:
                 startActivity(new Intent(this, LogInActivity.class));
                 return true;
@@ -70,30 +65,46 @@ public class MainActivity extends AppCompatActivity {
                 auth.signOut();
                 invalidateOptionsMenu();
                 Adapter.logout();
+                addBtn.setVisibility(View.GONE);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = findViewById(R.id.progressBar);
+        getSupportActionBar().setTitle("");
 
         auth = FirebaseAuth.getInstance();
 
-        progressBar.getProgressDrawable().setColorFilter(
-                Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN);
+        FirebaseUser user = auth.getCurrentUser();
 
-        getSupportActionBar().setTitle("");
+        addBtn = findViewById(R.id.fab);
+
+        if (user == null) {
+            addBtn.setVisibility(View.GONE);
+        } else {
+            addBtn.setVisibility(View.VISIBLE);
+        }
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddNewUser.class);
+                startActivity(intent);
+                return;
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerView);
         new FirebaseDatabaseHelper().readUsers(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<UserModel> userModels, List<String> keys) {
-                progressBar.setVisibility(View.GONE);
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
                 new Adapter().setConfig(recyclerView, MainActivity.this, userModels, keys);
             }
 

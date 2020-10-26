@@ -30,6 +30,8 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         auth = FirebaseAuth.getInstance();
 
+        getSupportActionBar().hide();
+
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
 

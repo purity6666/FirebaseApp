@@ -53,8 +53,12 @@ public class EditUserActivity extends AppCompatActivity {
                 });
                 finish();
                 return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -63,6 +67,7 @@ public class EditUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_user);
 
         getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         key = getIntent().getStringExtra("key");
         age = getIntent().getStringExtra("age");

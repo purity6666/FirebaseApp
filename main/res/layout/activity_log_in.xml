@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello There!"
+        android:fontFamily="@font/sfprodisplay_bold"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:layout_above="@id/editTextRL"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="20dp"/>
+
 
     <Button
         android:id="@+id/registerButton"
@@ -13,43 +24,61 @@
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="#FF9800"
-        android:text="Register"
+        android:textColor="#FFF"
+        android:background="@drawable/button_design"
+        android:text="         Register         "
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordET"
+        android:layout_below="@+id/editTextRL"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="#FF9800"
-        android:text="Log In"
+        android:textColor="#FFF"
+        android:background="@drawable/button_design"
+        android:text="         Log In         "
         android:textAllCaps="false" />
 
-    <EditText
-        android:id="@+id/emailET"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="E-Mail"
-        android:inputType="textEmailAddress" />
+        android:id="@+id/editTextRL"
+        android:layout_centerInParent="true">
 
-    <EditText
-        android:id="@+id/passwordET"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/emailET"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20sp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        <EditText
+            android:layout_marginHorizontal="30dp"
+            android:id="@+id/emailET"
+            android:background="@drawable/custom_et"
+            android:fontFamily="@font/sfprodisplay_light"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:hint="E-Mail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:layout_marginHorizontal="30dp"
+            android:id="@+id/passwordET"
+            android:background="@drawable/custom_et"
+            android:fontFamily="@font/sfprodisplay_light"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailET"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20sp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+    </RelativeLayout>
 
     <ProgressBar
+        android:indeterminateTint="#000"
         android:visibility="invisible"
         android:layout_centerInParent="true"
         android:id="@+id/progressBarLogin"

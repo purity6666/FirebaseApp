@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,7 +32,6 @@
         <TextView
             android:fontFamily="@font/sfprodisplay_light"
             android:id="@+id/addressTxt"
-            android:textStyle="italic"
             android:text="Text"
             android:textSize="25sp"
             android:layout_alignParentEnd="true"
